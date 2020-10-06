@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html class="loading" lang="en" data-textdirection="rtl">
 <head>
@@ -10,7 +9,7 @@
     <meta name="keywords"
           content="admin template, modern admin template, dashboard template, flat admin template, responsive admin template, web app, crypto dashboard, bitcoin dashboard">
     <meta name="author" content="PIXINVENT">
-    <title>  @yield('title') </title>
+    <title>@yield('title')</title>
     <link rel="apple-touch-icon" href="{{asset('assets/admin/images/ico/apple-icon-120.png')}}">
     <link rel="shortcut icon" type="image/x-icon" href="{{asset('assets/admin/images/ico/favicon.ico')}}">
     <link
@@ -53,7 +52,8 @@
     <!-- BEGIN Custom CSS-->
     <link rel="stylesheet" type="text/css" href="{{asset('assets/admin/css-rtl/style-rtl.css')}}">
     <!-- END Custom CSS-->
-
+    @notify_css
+    @yield('style')
     <link href="https://fonts.googleapis.com/css?family=Cairo&display=swap" rel="stylesheet">
     <style>
         body {
@@ -64,23 +64,13 @@
 <body class="vertical-layout vertical-menu 2-columns  @if(Request::is('admin/users/tickets/reply*')) chat-application @endif menu-expanded fixed-navbar"
       data-open="click" data-menu="vertical-menu" data-col="2-columns">
 <!-- fixed-top-->
+@include('admin.includes.header')
+<!-- ////////////////////////////////////////////////////////////////////////////-->
+@include('admin.includes.sidebar')
 
-<!-- Begin Header -->
-    @include('admin.includes.header')
-<!--End  Header -->
-
-<!-- Begin SideBar-->
-    @include('admin.includes.sidebar')
-<!--End Sidebare-->
-
-
-<!-- Begin Content -->
 @yield('content')
-<!-- End Content -->
-
-<!-- Begin Footer-->
+<!-- ////////////////////////////////////////////////////////////////////////////-->
 @include('admin.includes.footer')
-<!-- End Footer -->
 
 @notify_js
 @notify_render
@@ -179,7 +169,6 @@
         meridians: true,setCurrentTime: false
     });
 </script>
-
+@yield('script')
 </body>
 </html>
-
