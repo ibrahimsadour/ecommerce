@@ -34,4 +34,5 @@ class Admins extends Migration
     {
         Schema::dropIfExists('admins');
     }
+    
 }
