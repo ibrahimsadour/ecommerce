@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LanguagesController;
 use App\Http\Controllers\Admin\MainCategoriesController;
+use App\Http\Controllers\Admin\VendorsController;
 define('PAGINATION_COUNT',10); // PAGINATION_COUNT : een vast variabel  om alleen 10 items te laat zien om de pagina
 
 /*
@@ -29,7 +30,6 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth:admin'], function() {
 
 
     ############################# Begin Languages Route ###############################
-
     Route::group(['prefix' => 'languages'], function () {
         
         Route::get('/', [LanguagesController::class ,'index'])->name('admin.languages');
@@ -44,7 +44,6 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth:admin'], function() {
 
 
     ######################### Begin Main Categoris Routes ########################
-
     Route::group(['prefix' => 'main_categories'], function () {
 
         Route::get('/', [MainCategoriesController::class ,'index']) -> name('admin.maincategories');
@@ -54,9 +53,22 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth:admin'], function() {
         Route::post('update/{id}',[MainCategoriesController::class ,'update']) -> name('admin.maincategories.update');
         Route::get('delete/{id}',[MainCategoriesController::class ,'destroy']) -> name('admin.maincategories.delete');
         Route::get('changeStatus/{id}',[MainCategoriesController::class ,'changeStatus']) -> name('admin.maincategories.status');
-
     });
     ######################### End  Main Categoris Routes  ########################
+
+
+    ######################### Begin vendors Routes ###############################
+    Route::group(['prefix' => 'vendors'], function () {
+        
+        Route::get('/',[VendorsController::class ,'index']) -> name('admin.vendors');
+        Route::get('create',[VendorsController::class ,'create']) -> name('admin.vendors.create');
+        Route::post('store',[VendorsController::class ,'store']) -> name('admin.vendors.store');
+        Route::get('edit/{id}',[VendorsController::class ,'edit']) -> name('admin.vendors.edit');
+        Route::post('update/{id}',[VendorsController::class ,'update']) -> name('admin.vendors.update');
+        Route::get('delete/{id}',[VendorsController::class ,'destory']) -> name('admin.vendors.delete');
+    });
+    ######################### End  vendors Routes  ################################
+
 });
 
 Route::group(['namespace'=>'Admin','middleware' => 'guest:admin'], function(){

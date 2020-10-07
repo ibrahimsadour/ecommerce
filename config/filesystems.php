@@ -57,7 +57,7 @@ return [
         // Hier bij wordt alle foto van de maincategories (الاقسام) opgeslaagd
         'maincategories' => [
             'driver' => 'local',
-            'root' => public_path() . '/assets/images/maincategories/',
+            'root' => base_path() . '/assets/images/maincategories/',
             'url' => env('APP_URL') . '/public',
             'visibility' => 'public',
         ],

@@ -20,7 +20,7 @@ class Languages extends Migration
             $table->string('name');
             $table->string('direction');
             $table->tinyInteger('active')
-            ->comment('1 => show the product on the site, 0 => donot show the product on the site');
+            ->comment('1 => show the product on the site, 0 => donot show the product on the site')->default('1');
             $table->timestamps();
         });
     }

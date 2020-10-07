@@ -23,7 +23,7 @@ class MainCategories extends Migration
             $table->string('slug')->nullable();;
             $table->string('photo')->nullable();;
             $table->tinyInteger('active')
-            ->comment('1 => show the product on the site, 0 => donot show the product on the site');
+            ->comment('1 => show the product on the site, 0 => donot show the product on the site')->default('1');
             $table->timestamps();
         });
     }
