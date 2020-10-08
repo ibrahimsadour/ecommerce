@@ -9,11 +9,11 @@
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="">الرئيسية </a>
+                                <li class="breadcrumb-item"><a href="">Main </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href=""> الاقسام الرئيسية </a>
+                                <li class="breadcrumb-item"><a href=""> Main category </a>
                                 </li>
-                                <li class="breadcrumb-item active"> تعديل - {{$mainCategory -> name}}
+                                <li class="breadcrumb-item active"> Edit - {{$mainCategory -> name}}
                                 </li>
                             </ol>
                         </div>
@@ -27,7 +27,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-form"> تعديل قسم رئيسي </h4>
+                                    <h4 class="card-title" id="basic-layout-form"> Edit main ctergory </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -61,7 +61,7 @@
 
 
                                             <div class="form-group">
-                                                <label> صوره القسم </label>
+                                                <label> category image </label>
                                                 <label id="projectinput7" class="file center-block">
                                                     <input type="file" id="file" name="photo">
                                                     <span class="file-custom"></span>
@@ -73,11 +73,11 @@
 
                                             <div class="form-body">
 
-                                                <h4 class="form-section"><i class="ft-home"></i> بيانات القسم </h4>
+                                                <h4 class="form-section"><i class="ft-home"></i> section date</h4>
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> اسم القسم
+                                                            <label for="projectinput1"> section name
                                                                 - {{__('messages.'.$mainCategory -> translation_lang)}} </label>
                                                             <input type="text" id="name"
                                                                    class="form-control"
@@ -118,7 +118,7 @@
                                                                    class="switchery" data-color="success"
                                                                    @if($mainCategory -> active == 1)checked @endif/>
                                                             <label for="switcheryColor4"
-                                                                   class="card-title ml-1">الحالة {{__('messages.'.$mainCategory -> translation_lang)}} </label>
+                                                                   class="card-title ml-1">status {{__('messages.'.$mainCategory -> translation_lang)}} </label>
 
                                                             @error("category.0.active")
                                                             <span class="text-danger"> </span>
@@ -132,10 +132,10 @@
                                             <div class="form-actions">
                                                 <button type="button" class="btn btn-warning mr-1"
                                                         onclick="history.back();">
-                                                    <i class="ft-x"></i> تراجع
+                                                    <i class="ft-x"></i> back
                                                 </button>
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> تحديث
+                                                    <i class="la la-check-square-o"></i> update
                                                 </button>
                                             </div>
                                         </form>
@@ -172,11 +172,11 @@
 
                                                     <div class="form-body">
 
-                                                        <h4 class="form-section"><i class="ft-home"></i> بيانات القسم </h4>
+                                                        <h4 class="form-section"><i class="ft-home"></i> section data </h4>
                                                         <div class="row">
                                                             <div class="col-md-12">
                                                                 <div class="form-group">
-                                                                    <label for="projectinput1"> اسم القسم
+                                                                    <label for="projectinput1"> section name
                                                                         - {{__('messages.'.$translation -> translation_lang)}} </label>
                                                                     <input type="text" id="name"
                                                                            class="form-control"
@@ -217,7 +217,7 @@
                                                                            class="switchery" data-color="success"
                                                                            @if($translation -> active == 1)checked @endif/>
                                                                     <label for="switcheryColor4"
-                                                                           class="card-title ml-1">الحالة {{__('messages.'.$translation -> translation_lang)}} </label>
+                                                                           class="card-title ml-1">status {{__('messages.'.$translation -> translation_lang)}} </label>
 
                                                                     @error("category.0.active")
                                                                     <span class="text-danger"> </span>
@@ -231,10 +231,10 @@
                                                     <div class="form-actions">
                                                         <button type="button" class="btn btn-warning mr-1"
                                                                 onclick="history.back();">
-                                                            <i class="ft-x"></i> تراجع
+                                                            <i class="ft-x"></i> bakc
                                                         </button>
                                                         <button type="submit" class="btn btn-primary">
-                                                            <i class="la la-check-square-o"></i> تحديث
+                                                            <i class="la la-check-square-o"></i> update
                                                         </button>
                                                     </div>
                                                 </form>

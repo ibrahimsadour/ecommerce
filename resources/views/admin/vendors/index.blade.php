@@ -5,13 +5,13 @@
         <div class="content-wrapper">
             <div class="content-header row">
                 <div class="content-header-left col-md-6 col-12 mb-2">
-                    <h3 class="content-header-title"> Languages </h3>
+                    <h3 class="content-header-title"> Vendors </h3>
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Main</a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">main</a>
                                 </li>
-                                <li class="breadcrumb-item active"> Languages
+                                <li class="breadcrumb-item active"> vendors
                                 </li>
                             </ol>
                         </div>
@@ -25,7 +25,7 @@
                         <div class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title">All languages of the site</h4>
+                                    <h4 class="card-title">All vendors </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -44,34 +44,49 @@
                                 <div class="card-content collapse show">
                                     <div class="card-body card-dashboard">
                                         <table
-                                            class="table display nowrap table-striped table-bordered ">
-                                            <thead>
+                                            class="table display nowrap table-striped table-bordered scroll-horizontal">
+                                            <thead class="">
                                             <tr>
-                                                <th> Name</th>
-                                                <th>Abbreviation</th>
-                                                <th>Direction</th>
-                                                <th>Status</th>
+                                                <th>Name</th>
+                                                <th> Logo</th>
+                                                <th>Mobile</th>
+                                                <th>Main category</th>
+                                                <th> Staud </th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
                                             <tbody>
 
-                                            @isset($languages)
-                                                @foreach($languages as $language)
+                                            @isset($vendors)
+                                                @foreach($vendors as $vendor)
                                                     <tr>
-                                                        <td>{{$language -> name}}</td>
-                                                        <td>{{$language -> abbr}}</td>
-                                                        <td>{{$language -> direction}}</td>
-                                                        <td>{{$language -> getActive()}}</td>
+                                                        <td>{{$vendor -> name}}</td>
+                                                        <td><img style="width: 150px; height: 100px;"
+                                                                 src="{{$vendor -> 	logo}}"></td>
+
+                                                        <td>{{$vendor -> mobile}}</td>
+                                                        <td> {{$vendor -> 	category -> name}}</td>
+
+                                                        <td>
+                                                         @if($vendor -> getActive() === "active") 
+                                                         <b class="success">{{$vendor -> getActive() }}
+                                                         @else  
+                                                         <b class="warning">{{$vendor -> getActive()}}</b>
+                                                        @endif
+                                                        </td>
                                                         <td>
                                                             <div class="btn-group" role="group"
                                                                  aria-label="Basic example">
-                                                                <a href="{{route('admin.languages.edit',$language -> id)}}"
+                                                                <a href="{{route('admin.vendors.edit',$vendor -> id)}}"
                                                                    class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Edit</a>
 
 
-                                                                <a href="{{route('admin.languages.delete',$language -> id)}}"
-                                                                   class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">Remove</a>
+                                                                <a href=""
+                                                                   class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">Delet</a>
+
+
+                                                                <a href=""
+                                                                   class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">Active</a>
 
 
                                                             </div>

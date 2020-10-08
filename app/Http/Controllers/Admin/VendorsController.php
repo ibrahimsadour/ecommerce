@@ -29,8 +29,10 @@ class VendorsController extends Controller
 
     public function store(VendorRequest $request)
     {
-        try {
+        try {   
 
+            // return $request;
+            // if request === null || of leeg =>
             if (!$request->has('active'))
                 $request->request->add(['active' => 0]);
             else
@@ -48,18 +50,18 @@ class VendorsController extends Controller
                 'active' => $request->active,
                 'address' => $request->address,
                 'logo' => $filePath,
-                'password' => $request->password,
                 'category_id' => $request->category_id,
-                'latitude' => $request->latitude,
-                'longitude' => $request->longitude,
-            ]);
+                'password' => $request->password,
 
+            ]);
+            
+            // als de verkooper heeft een plaatform gemaakt krijgt hij een email
             Notification::send($vendor, new VendorCreated($vendor));
 
             return redirect()->route('admin.vendors')->with(['success' => 'تم الحفظ بنجاح']);
 
         } catch (\Exception $ex) {
-            return $ex;
+            // return $ex;
             return redirect()->route('admin.vendors')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
 
         }
@@ -108,7 +110,7 @@ class VendorsController extends Controller
             else
                 $request->request->add(['active' => 1]);
 
-             $data = $request->except('_token', 'id', 'logo', 'password');
+             $data = $request->except('_token', 'id', 'logo');
 
 
             if ($request->has('password') && !is_null($request->  password)) {
@@ -131,10 +133,10 @@ class VendorsController extends Controller
 
     }
 
-    public function changeStatus()
-    {
+    // public function changeStatus()
+    // {
 
-    }
+    // }
 
 
 }

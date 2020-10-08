@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-
+use App\Observers\MainCategoryObserver;
 class MainCategory extends Model
 {
     use HasFactory;
@@ -17,13 +17,13 @@ class MainCategory extends Model
         'id ', 'abbtranslation_langr','translation_of','name','slug','photo','active','created_at','updated_at'
     ];
 
-  
+    // deze is gemaakt om het alle verkoper uit te zitten wannner is de afdeling uitgezet
 
-    // protected static function boot()
-    // {
-    //     parent::boot();
-    //     MainCategory::observe(MainCategoryObserver::class);
-    // }
+    protected static function boot()
+    {
+        parent::boot();
+        MainCategory::observe(MainCategoryObserver::class);
+    }
 
     // deze een globaal scope om een active product of winkel te laat zien with Methode(where('active',1)) 
     public function scopeActive($query)
@@ -37,6 +37,8 @@ class MainCategory extends Model
         return $query->select('id', 'translation_lang', 'name', 'slug', 'photo', 'active', 'translation_of');
     }
 
+    //whene you get Photo from database (automacly added http://dominName/ecommerce/assets/)
+    //that is made with standard method (asset)
     public function getPhotoAttribute($val)
     {
         return ($val !== null) ? asset('assets/' . $val) : "";
@@ -45,7 +47,7 @@ class MainCategory extends Model
 
     public function getActive()
     {
-        return $this->active == 1 ? 'مفعل' : 'غير مفعل';
+        return $this->active == 1 ? 'active'  : 'inactive';
 
     }
 
@@ -54,16 +56,16 @@ class MainCategory extends Model
     }
 
 
-      // get all translation categories
+    // get all translation categories
     public function categories()
     {
         return $this->hasMany(self::class, 'translation_of');
     }
 
 
-    public  function subCategories(){
-        return $this -> hasMany(SubCategory::class,'category_id','id');
-    }
+    // public  function subCategories(){
+    //     return $this -> hasMany(SubCategory::class,'category_id','id');
+    // }
 
 
 

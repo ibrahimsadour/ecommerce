@@ -9,11 +9,11 @@
                     <div class="row breadcrumbs-top">
                         <div class="breadcrumb-wrapper col-12">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">الرئيسية </a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Main </a>
                                 </li>
-                                <li class="breadcrumb-item"><a href="{{route('admin.languages')}}"> أللغات </a>
+                                <li class="breadcrumb-item"><a href="{{route('admin.languages')}}"> Languages </a>
                                 </li>
-                                <li class="breadcrumb-item active">إضافة لغة
+                                <li class="breadcrumb-item active">Add a new Language
                                 </li>
                             </ol>
                         </div>
@@ -27,7 +27,7 @@
                         <div class="col-md-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h4 class="card-title" id="basic-layout-form"> إضافة لغة </h4>
+                                    <h4 class="card-title" id="basic-layout-form"> Add a new Language </h4>
                                     <a class="heading-elements-toggle"><i
                                             class="la la-ellipsis-v font-medium-3"></i></a>
                                     <div class="heading-elements">
@@ -48,15 +48,15 @@
                                             @csrf
 
                                             <div class="form-body">
-                                                <h4 class="form-section"><i class="ft-home"></i> بيانات  اللغة </h4>
+                                                <h4 class="form-section"><i class="ft-home"></i> Language data </h4>
 
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> اسم اللغة </label>
+                                                            <label for="projectinput1"> Language name </label>
                                                             <input type="text" value="" id="name"
                                                                    class="form-control"
-                                                                   placeholder="ادخل اسم اللغة  "
+                                                                   placeholder="Enter Language name"
                                                                    name="name">
                                                             @error('name')
                                                             <span class="text-danger">{{$message}}</span>
@@ -66,10 +66,10 @@
 
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> أختصار اللغة </label>
+                                                            <label for="projectinput1"> Language abbreviation </label>
                                                             <input type="text" value="" id="name"
                                                                    class="form-control"
-                                                                   placeholder="ادخل أختصار اللغة  "
+                                                                   placeholder=" Enter Language abbreviation  "
                                                                    name="abbr">
                                                             @error('abbr')
                                                             <span class="text-danger">{{$message}} </span>
@@ -84,11 +84,11 @@
 
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput2"> الاتجاة </label>
+                                                            <label for="projectinput2"> Direction </label>
                                                             <select name="direction" class="select2 form-control">
-                                                                <optgroup label="من فضلك أختر اتجاه اللغة ">
-                                                                    <option value="rtl">من اليمين الي اليسار</option>
-                                                                    <option value="ltr">من اليسار الي اليمين</option>
+                                                                <optgroup label="Please choose the language direction ">
+                                                                    <option value="rtl">From right to left</option>
+                                                                    <option value="ltr">From left to right</option>
                                                                 </optgroup>
                                                             </select>
                                                             @error('direction')
@@ -107,7 +107,7 @@
                                                                    class="switchery" data-color="success"
                                                                    checked/>
                                                             <label for="switcheryColor4"
-                                                                   class="card-title ml-1">الحالة </label>
+                                                                   class="card-title ml-1">Status </label>
 
                                                             @error('active')
                                                             <span class="text-danger">{{$message}}</span>
@@ -121,10 +121,10 @@
                                             <div class="form-actions">
                                                 <button type="button" class="btn btn-warning mr-1"
                                                         onclick="history.back();">
-                                                    <i class="ft-x"></i> تراجع
+                                                    <i class="ft-x"></i> Back
                                                 </button>
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i class="la la-check-square-o"></i> حفظ
+                                                    <i class="la la-check-square-o"></i> Save
                                                 </button>
                                             </div>
                                         </form>

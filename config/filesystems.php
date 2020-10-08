@@ -61,6 +61,13 @@ return [
             'url' => env('APP_URL') . '/public',
             'visibility' => 'public',
         ],
+        // Hier bij wordt alle foto van de vendors (الاقسام) opgeslaagd
+        'vendors' => [
+            'driver' => 'local',
+            'root' => base_path() . '/assets/images/vendors/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',

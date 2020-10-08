@@ -190,19 +190,28 @@ class MainCategoriesController extends Controller
             if (!$maincategory)
                 return redirect()->route('admin.maincategories')->with(['error' => 'هذا القسم غير موجود ']);
 
+            // relatie tussen de maincategory en vendors ( als de maincategory bevat vendors kan het niet verwijderen )
             $vendors = $maincategory->vendors();
             if (isset($vendors) && $vendors->count() > 0) {
                 return redirect()->route('admin.maincategories')->with(['error' => 'لأ يمكن حذف هذا القسم  ']);
             }
 
+            ## Delet image
+            ##Srt is cutting helper method
             $image = Str::after($maincategory->photo, 'assets/');
             $image = base_path('assets/' . $image);
             unlink($image); //delete from folder
 
+            #Delet all translation of the categories
+            $maincategory -> categories() -> delete();
+        
+            #delet section
             $maincategory->delete();
+
             return redirect()->route('admin.maincategories')->with(['success' => 'تم حذف القسم بنجاح']);
 
         } catch (\Exception $ex) {
+            // return $ex;
             return redirect()->route('admin.maincategories')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
