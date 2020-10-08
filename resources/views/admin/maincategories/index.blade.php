@@ -79,9 +79,7 @@
                                                                 <a href="{{route('admin.maincategories.delete',$category -> id)}}"
                                                                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">remove</a>
 
-<!-- 
-                                                                <a href="{{route('admin.maincategories.status',$category -> id)}}"
-                                                                   class="btn btn-outline-success btn-min-width box-shadow-3 mr-1 mb-1"> -->
+
                                                                     @if($category -> active == 0)
                                                                     <a href="{{route('admin.maincategories.status',$category -> id)}}"
                                                                    class="btn btn-outline-success btn-min-width box-shadow-3 mr-1 mb-1">active</a>
@@ -90,7 +88,7 @@
                                                                    class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
                                                                    Deactivate</a>
                                                                     @endif
-                                                                </a>
+                                                                
 
 
                                                             </div>

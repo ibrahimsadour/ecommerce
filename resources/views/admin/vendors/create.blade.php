@@ -106,7 +106,7 @@
                                                             <label for="projectinput1"> Mobile</label>
                                                             <input type="text" id="mobile"
                                                                    class="form-control"
-                                                                   placeholder="  " name="mobile">
+                                                                   placeholder="mobile" name="mobile">
 
                                                             @error("mobile")
                                                             <span class="text-danger"> {{$message}}</span>
@@ -211,7 +211,7 @@
 
 @section('script')
 
-    <script>
+    <!-- <script>
 
 
 
@@ -417,6 +417,6 @@
             $("#longitude").val(Lng);
         }
 
-    </script>
+    </script> -->
 <script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC94LAYxA42YI3fRHfxuuy2uA4MrkpCdCc&callback=initMap"></script>
     @stop

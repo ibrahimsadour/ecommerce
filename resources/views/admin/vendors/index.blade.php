@@ -51,7 +51,7 @@
                                                 <th> Logo</th>
                                                 <th>Mobile</th>
                                                 <th>Main category</th>
-                                                <th> Staud </th>
+                                                <th> Status </th>
                                                 <th>Action</th>
                                             </tr>
                                             </thead>
@@ -81,12 +81,18 @@
                                                                    class="btn btn-outline-primary btn-min-width box-shadow-3 mr-1 mb-1">Edit</a>
 
 
-                                                                <a href=""
+                                                                <a href="{{route('admin.vendors.delete',$vendor -> id)}}"
                                                                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">Delet</a>
 
 
-                                                                <a href=""
-                                                                   class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">Active</a>
+                                                                   @if($vendor -> active == 0)
+                                                                    <a href="{{route('admin.vendors.status',$vendor -> id)}}"
+                                                                   class="btn btn-outline-success btn-min-width box-shadow-3 mr-1 mb-1">active</a>
+                                                                        @else
+                                                                    <a href="{{route('admin.vendors.status',$vendor -> id)}}"
+                                                                   class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                   Deactivate</a>
+                                                                    @endif
 
 
                                                             </div>

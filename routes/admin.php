@@ -67,6 +67,9 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth:admin'], function() {
         Route::get('edit/{id}',[VendorsController::class ,'edit']) -> name('admin.vendors.edit');
         Route::post('update/{id}',[VendorsController::class ,'update']) -> name('admin.vendors.update');
         Route::get('delete/{id}',[VendorsController::class ,'destory']) -> name('admin.vendors.delete');
+        //change Status the vendors 
+        Route::get('changeStatus/{id}',[VendorsController::class ,'changeStatus']) -> name('admin.vendors.status');
+
     });
     ######################### End  vendors Routes  ################################
 

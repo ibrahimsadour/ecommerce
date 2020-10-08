@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Notification;
 use App\Notifications\VendorCreated;
 use DB;
+use Illuminate\Support\Str;
 
 class VendorsController extends Controller
 {
@@ -33,6 +34,7 @@ class VendorsController extends Controller
 
             // return $request;
             // if request === null || of leeg =>
+
             if (!$request->has('active'))
                 $request->request->add(['active' => 0]);
             else
@@ -57,13 +59,13 @@ class VendorsController extends Controller
             
             // als de verkooper heeft een plaatform gemaakt krijgt hij een email
             Notification::send($vendor, new VendorCreated($vendor));
-
+                
             return redirect()->route('admin.vendors')->with(['success' => 'تم الحفظ بنجاح']);
 
-        } catch (\Exception $ex) {
-            // return $ex;
-            return redirect()->route('admin.vendors')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        } catch (\Exception $exception) {
+            // return $exception;
 
+            return redirect()->route('admin.vendors')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
 
@@ -80,6 +82,7 @@ class VendorsController extends Controller
             return view('admin.vendors.edit', compact('vendor', 'categories'));
 
         } catch (\Exception $exception) {
+            
             return redirect()->route('admin.vendors')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
         }
     }
@@ -133,10 +136,61 @@ class VendorsController extends Controller
 
     }
 
-    // public function changeStatus()
-    // {
 
-    // }
+
+    public function destory($id)
+    {
+
+        try {
+            $vendor = Vendor::find($id);
+            if (!$vendor)
+                return redirect()->route('admin.vendors')->with(['error' => 'هذا المتجر غير موجود ']);
+
+
+            // // relatie tussen de maincategory en vendors ( als de maincategory bevat vendors kan het niet verwijderen )
+            // $vendors = $maincategory->vendors();
+            // if (isset($vendors) && $vendors->count() > 0) {
+            //     return redirect()->route('admin.maincategories')->with(['error' => 'لأ يمكن حذف هذا القسم  ']);
+            // }
+
+            ## Delet image
+            ##Srt is cutting helper method
+            $image = Str::after($vendor->logo, 'assets/');
+            $image = base_path('assets/' . $image);
+            unlink($image); //delete from folder
+
+            // #Delet all translation of the categories
+            // $vendor -> categories() -> delete();
+        
+            #delet section
+            $vendor->delete();
+
+            return redirect()->route('admin.vendors')->with(['success' => 'تم حذف المتجر بنجاح']);
+
+        } catch (\Exception $ex) {
+            // return $ex;
+            return redirect()->route('admin.vendors')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
+    }
+
+
+    public function changeStatus($id)
+    {
+        try {
+            $vendor = Vendor::find($id);
+            if (!$vendor)
+                return redirect()->route('admin.vendors')->with(['error' => 'هذا القسم غير موجود ']);
+
+           $status =  $vendor -> active  == 0 ? 1 : 0;
+
+           $vendor -> update(['active' =>$status ]);
+
+            return redirect()->route('admin.vendors')->with(['success' => ' تم تغيير الحالة بنجاح ']);
+
+        } catch (\Exception $ex) {
+            return redirect()->route('admin.vendors')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
+    }
 
 
 }
