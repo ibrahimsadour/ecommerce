@@ -156,7 +156,8 @@ class VendorsController extends Controller
             ## Delet image
             ##Srt is cutting helper method
             $image = Str::after($vendor->logo, 'assets/');
-            $image = base_path('assets/' . $image);
+            $image = public_path('assets/' . $image);
+            // return $image;
             unlink($image); //delete from folder
 
             // #Delet all translation of the categories

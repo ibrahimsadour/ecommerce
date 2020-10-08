@@ -199,7 +199,7 @@ class MainCategoriesController extends Controller
             ## Delet image
             ##Srt is cutting helper method
             $image = Str::after($maincategory->photo, 'assets/');
-            $image = base_path('assets/' . $image);
+            $image = public_path('assets/' . $image);
             unlink($image); //delete from folder
 
             #Delet all translation of the categories
