@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\LanguagesController;
 use App\Http\Controllers\Admin\MainCategoriesController;
 use App\Http\Controllers\Admin\VendorsController;
+use App\Http\Controllers\Admin\SubCategoriesController;
 define('PAGINATION_COUNT',10); // PAGINATION_COUNT : een vast variabel  om alleen 10 items te laat zien om de pagina
 
 /*
@@ -46,7 +47,7 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth:admin'], function() {
     ######################### Begin Main Categoris Routes ########################
     Route::group(['prefix' => 'main_categories'], function () {
 
-        Route::get('/', [MainCategoriesController::class ,'index']) -> name('admin.maincategories');
+        Route::get('/', [SubCategory::class ,'index']) -> name('admin.maincategories');
         Route::get('create',[MainCategoriesController::class ,'create']) -> name('admin.maincategories.create');
         Route::post('store',[MainCategoriesController::class ,'store']) -> name('admin.maincategories.store');
         Route::get('edit/{id}',[MainCategoriesController::class ,'edit']) -> name('admin.maincategories.edit');
@@ -56,6 +57,20 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth:admin'], function() {
         Route::get('changeStatus/{id}',[MainCategoriesController::class ,'changeStatus']) -> name('admin.maincategories.status');
     });
     ######################### End  Main Categoris Routes  ########################
+
+
+    
+    ######################### Begin Sub Categoris Routes ########################
+    Route::group(['prefix' => 'sub_categories'], function () {
+        Route::get('/',[SubCategoriesController::class ,'index']) -> name('admin.subcategories');
+        Route::get('create',[SubCategoriesController::class ,'create']) -> name('admin.subcategories.create');
+        Route::post('store',[SubCategoriesController::class ,'store']) -> name('admin.subcategories.store');
+        Route::get('edit/{id}',[SubCategoriesController::class ,'edit']) -> name('admin.subcategories.edit');
+        Route::post('update/{id}',[SubCategoriesController::class ,'update']) -> name('admin.subcategories.update');
+        Route::get('delete/{id}',[SubCategoriesController::class ,'destroy']) -> name('admin.subcategories.delete');
+
+    });
+    ######################### End  Sub Categoris Routes  ########################
 
 
     ######################### Begin vendors Routes ###############################
@@ -79,5 +94,4 @@ Route::group(['namespace'=>'Admin','middleware' => 'guest:admin'], function(){
     Route::get('login' ,[LoginController::class ,'getLogin'])-> name('get.admin.login');
     Route::post('login' ,[LoginController::class ,'login']) -> name('admin.login');
 });
-
 

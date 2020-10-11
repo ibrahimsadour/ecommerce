@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Observers\MainCategoryObserver;
+use App\Models\SubCategory;
 class MainCategory extends Model
 {
     use HasFactory;
@@ -14,7 +15,7 @@ class MainCategory extends Model
     protected $table = 'main_categories';
 
     protected $fillable = [
-        'id ', 'abbtranslation_langr','translation_of','name','slug','photo','active','created_at','updated_at'
+        'id ', 'translation_lang','translation_of','name','slug','photo','active','created_at','updated_at'
     ];
 
     // deze is gemaakt om het alle verkoper uit te zitten wannner is de afdeling uitgezet
@@ -62,10 +63,10 @@ class MainCategory extends Model
         return $this->hasMany(self::class, 'translation_of');
     }
 
-
-    // public  function subCategories(){
-    //     return $this -> hasMany(SubCategory::class,'category_id','id');
-    // }
+    // get all subCategories 
+    public  function subCategories(){
+        return $this -> hasMany(SubCategory::class,'category_id','id');
+    }
 
 
 

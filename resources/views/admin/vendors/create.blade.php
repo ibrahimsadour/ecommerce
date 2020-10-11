@@ -211,33 +211,24 @@
 
 @section('script')
 
-    <!-- <script>
-
-
-
+    <script>
         $("#pac-input").focusin(function() {
             $(this).val('');
         });
-
         $('#latitude').val('');
         $('#longitude').val('');
-
-
         // This example adds a search box to a map, using the Google Place Autocomplete
         // feature. People can enter geographical searches. The search box will return a
         // pick list containing a mix of places and predicted search terms.
-
         // This example requires the Places library. Include the libraries=places
         // parameter when you first load the API. For example:
         // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
-
-        function initMap() {
+        function initAutocomplete() {
             var map = new google.maps.Map(document.getElementById('map'), {
                 center: {lat: 24.740691, lng: 46.6528521 },
                 zoom: 13,
                 mapTypeId: 'roadmap'
             });
-
             // move pin and current location
             infoWindow = new google.maps.InfoWindow;
             geocoder = new google.maps.Geocoder();
@@ -267,7 +258,6 @@
                 console.log('dsdsdsdsddsd');
                 handleLocationError(false, infoWindow, map.getCenter());
             }
-
             var geocoder = new google.maps.Geocoder();
             google.maps.event.addListener(map, 'click', function(event) {
                 SelectedLatLng = event.latLng;
@@ -291,7 +281,6 @@
                 /* $('#branch-latLng').val("("+markerCurrent.position.lat() +","+markerCurrent.position.lng()+")");*/
                 $('#latitude').val(markerCurrent.position.lat());
                 $('#longitude').val(markerCurrent.position.lng());
-
                 geocoder.geocode({'location': latlng}, function(results, status) {
                     if (status === 'OK') {
                         if (results[0]) {
@@ -304,7 +293,6 @@
                             infowindow.setContent(results[0].formatted_address);
                             SelectedLocation = results[0].formatted_address;
                             $("#pac-input").val(results[0].formatted_address);
-
                             infowindow.open(map, marker);
                         } else {
                             window.alert('No results found');
@@ -334,34 +322,28 @@
                 clearMarkers();
                 markers = [];
             }
-
             // Create the search box and link it to the UI element.
             var input = document.getElementById('pac-input');
             $("#pac-input").val("أبحث هنا ");
             var searchBox = new google.maps.places.SearchBox(input);
             map.controls[google.maps.ControlPosition.TOP_RIGHT].push(input);
-
             // Bias the SearchBox results towards current map's viewport.
             map.addListener('bounds_changed', function() {
                 searchBox.setBounds(map.getBounds());
             });
-
             var markers = [];
             // Listen for the event fired when the user selects a prediction and retrieve
             // more details for that place.
             searchBox.addListener('places_changed', function() {
                 var places = searchBox.getPlaces();
-
                 if (places.length == 0) {
                     return;
                 }
-
                 // Clear out the old markers.
                 markers.forEach(function(marker) {
                     marker.setMap(null);
                 });
                 markers = [];
-
                 // For each place, get the icon, name and location.
                 var bounds = new google.maps.LatLngBounds();
                 places.forEach(function(place) {
@@ -376,7 +358,6 @@
                         anchor: new google.maps.Point(17, 34),
                         scaledSize: new google.maps.Size(25, 25)
                     };
-
                     // Create a marker for each place.
                     markers.push(new google.maps.Marker({
                         map: map,
@@ -384,11 +365,8 @@
                         title: place.name,
                         position: place.geometry.location
                     }));
-
-
                     $('#latitude').val(place.geometry.location.lat());
                     $('#longitude').val(place.geometry.location.lng());
-
                     if (place.geometry.viewport) {
                         // Only geocodes have viewport.
                         bounds.union(place.geometry.viewport);
@@ -412,11 +390,13 @@
             var trainindIdArray = newString2.split(',');
             var lat = trainindIdArray[0];
             var Lng  = trainindIdArray[1];
-
             $("#latitude").val(lat);
             $("#longitude").val(Lng);
         }
 
-    </script> -->
-<script defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC94LAYxA42YI3fRHfxuuy2uA4MrkpCdCc&callback=initMap"></script>
+    </script>
+
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC94LAYxA42YI3fRHfxuuy2uA4MrkpCdCc&callback=initAutocomplete&language=en&region=nl
+         async defer"></script>
+
     @stop
