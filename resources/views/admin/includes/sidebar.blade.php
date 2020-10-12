@@ -1,65 +1,66 @@
 <div class="main-menu menu-fixed menu-light menu-accordion    menu-shadow " data-scroll-to-active="true">
     <div class="main-menu-content">
-        <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
+       <ul class="navigation navigation-main" id="main-menu-navigation" data-menu="menu-navigation">
 
-            <li class="nav-item active"><a href=""><i class="la la-mouse-pointer"></i><span
-                        class="menu-title" data-i18n="nav.add_on_drag_drop.main">Main Page </span></a>
-            </li>
+              <li class="{{ Request::is('admin') ? 'nav-item active' : '' }}"><a href="{{route('admin.dashboard')}}"><i class="la la-home"></i><span
+                            class="menu-title" data-i18n="nav.add_on_drag_drop.main">Dashboard</span></a>
+              </li>
 
-            <li class="nav-item  open ">
-                <a href=""><i class="la la-home"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">Site languages</span>
-                    <span
-                        class="badge badge badge-info badge-pill float-right mr-2">{{App\Models\Language::count()}}</span>
-                </a>
-                <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href="{{route('admin.languages')}}"
-                                          data-i18n="nav.dash.ecommerce"> Show all </a>
-                    </li>
-                    <li><a class="menu-item" href="{{route('admin.languages.create')}}" data-i18n="nav.dash.crypto">Add a new language </a>
-                    </li>
-                </ul>
-            </li>
+              <li class="{{ Request::is('admin/languages') ? 'nav-item active' : '' }}">
+                     <a href=""><i class="la la-home"></i>
+                            <span class="menu-title" data-i18n="nav.dash.main">Site languages</span>
+                            <span
+                            class="badge badge badge-info badge-pill float-right mr-2">{{App\Models\Language::count()}}</span>
+                     </a>
+                     <ul class="menu-content">
+                            <li class="{{ Request::is('admin/languages') ? 'active' : '' }}"><a class="menu-item" href="{{route('admin.languages')}}"
+                                                 data-i18n="nav.dash.ecommerce"> Show all </a>
+                            </li>
+                            <li class="{{ Request::is('admin/languages/create') ? 'active' : '' }}" >
+                                   <a class="menu-item" href="{{route('admin.languages.create')}}" data-i18n="nav.dash.crypto">Add a new language </a>
+                            </li>
+                     </ul>
+              </li>
 
 
-            <li class="nav-item"><a href=""><i class="la la-group"></i>
+            <li class="{{ Request::is('admin/main_categories') ? 'nav-item active' : '' }}"><a href=""><i class="la la-group"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">Main Categories</span>
                     <span
                         class="badge badge badge-danger badge-pill float-right mr-2">{{App\Models\MainCategory::defaultCategory() ->count()}}</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href="{{route('admin.maincategories')}}"
+                    <li class="{{ Request::is('admin/main_categories') ? 'active' : '' }}"><a class="menu-item" href="{{route('admin.maincategories')}}"
                                           data-i18n="nav.dash.ecommerce"> Show all</a>
                     </li>
-                    <li><a class="menu-item" href="{{route('admin.maincategories.create')}}" data-i18n="nav.dash.crypto"> Add a new category </a>
+                    <li class="{{ Request::is('admin/main_categories/create') ? 'active' : '' }}"><a class="menu-item" href="{{route('admin.maincategories.create')}}" data-i18n="nav.dash.crypto"> Add a new category </a>
                     </li>
                 </ul>
             </li>
 
-            <li class="nav-item"><a href=""><i class="la la-group"></i>
+            <li class="{{ Request::is('admin/sub_categories') ? 'nav-item active' : '' }}"><a href=""><i class="la la-group"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">Sub Categories</span>
                     <span
                         class="badge badge badge-danger badge-pill float-right mr-2">{{App\Models\SubCategory::count()}}</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href="{{route('admin.subcategories')}}"
+                    <li  class="{{ Request::is('admin/sub_categories') ? 'active' : '' }}"><a class="menu-item" href="{{route('admin.subcategories')}}"
                                           data-i18n="nav.dash.ecommerce"> Show all</a>
                     </li>
-                    <li><a class="menu-item" href="{{route('admin.subcategories.create')}}" data-i18n="nav.dash.crypto"> Add a new category </a>
+                    <li  class="{{ Request::is('admin/sub_categories/create') ? 'active' : '' }}"><a class="menu-item" href="{{route('admin.subcategories.create')}}" data-i18n="nav.dash.crypto"> Add a new category </a>
                     </li>
                 </ul>
             </li>
 
-            <li class="nav-item"><a href=""><i class="la la-male"></i>
+            <li  class="{{ Request::is('admin/vendors') ? 'nav-item active' : '' }}"><a href=""><i class="la la-male"></i>
                     <span class="menu-title" data-i18n="nav.dash.main"> Vendors  </span>
                     <span
                         class="badge badge badge-success badge-pill float-right mr-2">{{App\Models\Vendor::count()}}</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href="{{route('admin.vendors')}}"
+                    <li class="{{ Request::is('admin/vendors') ? 'active' : '' }}"><a class="menu-item" href="{{route('admin.vendors')}}"
                                           data-i18n="nav.dash.ecommerce"> Show all </a>
                     </li>
-                    <li><a class="menu-item" href="{{route('admin.vendors.create')}}" data-i18n="nav.dash.crypto">Add a new Vendor  </a>
+                    <li  class="{{ Request::is('admin/vendors/create') ? 'active' : '' }}" ><a class="menu-item" href="{{route('admin.vendors.create')}}" data-i18n="nav.dash.crypto">Add a new Vendor  </a>
                     </li>
                 </ul>
             </li>
@@ -1540,16 +1541,16 @@
                                                                         data-toggle="tooltip"
                                                                         data-placement="right"
                                                                         data-original-title="Support"></i>
-            </li>
+            </li> -->
             <li class=" nav-item"><a href="http://support.pixinvent.com/"><i class="la la-support"></i><span
-                        class="menu-title" data-i18n="nav.support_raise_support.main">Raise Support</span></a>
+                        class="menu-title" data-i18n="nav.support_raise_support.main">website url</span></a>
             </li>
-            <li class=" nav-item">
+            <!-- <li class=" nav-item">
                 <a href="https://pixinvent.com/modern-admin-clean-bootstrap-4-dashboard-html-template/documentation"><i
                         class="la la-text-height"></i>
                     <span class="menu-title" data-i18n="nav.support_documentation.main">Documentation</span>
                 </a>
-            </li> -->
-        </ul>
+            </li>  -->
+       </ul>
     </div>
 </div>
