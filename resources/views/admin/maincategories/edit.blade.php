@@ -75,7 +75,7 @@
 
                                                 <h4 class="form-section"><i class="ft-home"></i> section date</h4>
                                                 <div class="row">
-                                                    <div class="col-md-12">
+                                                    <div class="col-md-6">
                                                         <div class="form-group">
                                                             <label for="projectinput1"> section name
                                                                 - {{__('messages.'.$mainCategory -> translation_lang)}} </label>
@@ -84,6 +84,20 @@
                                                                    placeholder="  "
                                                                    value="{{$mainCategory -> name}}"
                                                                    name="category[0][name]">
+                                                            @error("category.0.name")
+                                                            <span class="text-danger"> هذا الحقل مطلوب</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="form-group">
+                                                            <label for="projectinput1"> Slug - {{__('messages.'.$mainCategory -> translation_lang)}} 
+                                                            </label>
+                                                            <input type="text" id="name"
+                                                                    class="form-control"
+                                                                    placeholder="  "
+                                                                    value="{{$mainCategory -> slug}}"
+                                                                    name="category[0][slug]">
                                                             @error("category.0.name")
                                                             <span class="text-danger"> هذا الحقل مطلوب</span>
                                                             @enderror
@@ -181,7 +195,7 @@
                                                                     <input type="text" id="name"
                                                                            class="form-control"
                                                                            placeholder="  "
-                                                                           value="{{$translation -> name}}"
+                                                                           value=""
                                                                            name="category[0][name]">
                                                                     @error("category.0.name")
                                                                     <span class="text-danger"> هذا الحقل مطلوب</span>

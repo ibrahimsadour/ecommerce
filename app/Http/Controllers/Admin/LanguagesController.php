@@ -31,9 +31,9 @@ class LanguagesController extends Controller
         try {
 
             Language::create($request->except(['_token']));
-            return redirect()->route('admin.languages')->with(['success' => 'تم حفظ اللغة بنجاح']);
+            return redirect()->route('admin.languages')->with(['success' => 'The language has been saved successfully']);
         } catch (\Exception $ex) {
-            return redirect()->route('admin.languages')->with(['error' => 'هناك خطا ما يرجي المحاوله فيما بعد']);
+            return redirect()->route('admin.languages')->with(['error' => 'There is an error, please try again']);
         }
     }
 
@@ -41,7 +41,7 @@ class LanguagesController extends Controller
     {
         $language = Language::select()->find($id);
         if (!$language) {
-            return redirect()->route('admin.languages')->with(['error' => 'هذه اللغة غير موجوده']);
+            return redirect()->route('admin.languages')->with(['error' => 'This language does not exist']);
         }
 
         return view('admin.languages.edit', compact('language'));
@@ -53,7 +53,7 @@ class LanguagesController extends Controller
         try {
             $language = Language::find($id);
             if (!$language) {
-                return redirect()->route('admin.languages.edit', $id)->with(['error' => 'هذه اللغة غير موجوده']);
+                return redirect()->route('admin.languages.edit', $id)->with(['error' => 'This language does not exist']);
             }
 
 
@@ -62,10 +62,10 @@ class LanguagesController extends Controller
 
             $language->update($request->except('_token'));
 
-            return redirect()->route('admin.languages')->with(['success' => 'تم تحديث اللغة بنجاح']);
+            return redirect()->route('admin.languages')->with(['success' => 'The language has been successfully updated']);
 
         } catch (\Exception $ex) {
-            return redirect()->route('admin.languages')->with(['error' => 'هناك خطا ما يرجي المحاوله فيما بعد']);
+            return redirect()->route('admin.languages')->with(['error' => 'There is an error, please try again']);
         }
     }
 
@@ -75,14 +75,33 @@ class LanguagesController extends Controller
         try {
             $language = Language::find($id);
             if (!$language) {
-                return redirect()->route('admin.languages', $id)->with(['error' => 'هذه اللغة غير موجوده']);
+                return redirect()->route('admin.languages', $id)->with(['error' => 'This language does not exist']);
             }
             $language->delete();
 
-            return redirect()->route('admin.languages')->with(['success' => 'تم حذف اللغة بنجاح']);
+            return redirect()->route('admin.languages')->with(['success' => 'Language successfully deleted']);
 
         } catch (\Exception $ex) {
-            return redirect()->route('admin.languages')->with(['error' => 'هناك خطا ما يرجي المحاوله فيما بعد']);
+            return redirect()->route('admin.languages')->with(['error' => 'There is an error, please try again']);
         }
     }
+
+    public function changeStatus($id)
+    {
+        try {
+            $language = Language::find($id);
+            if (!$language)
+                return redirect()->route('admin.languages')->with(['error' => 'This language does not exist ']);
+
+           $status =  $language -> active  == 0 ? 1 : 0;
+
+           $language -> update(['active' =>$status ]);
+
+            return redirect()->route('admin.languages')->with(['success' => 'The language status has been successfully updated']);
+
+        } catch (\Exception $ex) {
+            return redirect()->route('admin.languages')->with(['error' => 'There is an error, please try again']);
+        }
+    }
+
 }

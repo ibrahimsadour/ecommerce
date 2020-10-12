@@ -39,6 +39,8 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth:admin'], function() {
         Route::get('edit/{id}',[LanguagesController::class ,'edit']) -> name('admin.languages.edit');
         Route::post('update/{id}',[LanguagesController::class ,'update']) -> name('admin.languages.update');
         Route::get('delete/{id}',[LanguagesController::class ,'destroy']) -> name('admin.languages.delete');
+        //change Status the Languages 
+        Route::get('changeStatus/{id}',[LanguagesController::class ,'changeStatus']) -> name('admin.languages.status');
     });
     ############################# End Languages Route ###############################
 
@@ -68,6 +70,8 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth:admin'], function() {
         Route::get('edit/{id}',[SubCategoriesController::class ,'edit']) -> name('admin.subcategories.edit');
         Route::post('update/{id}',[SubCategoriesController::class ,'update']) -> name('admin.subcategories.update');
         Route::get('delete/{id}',[SubCategoriesController::class ,'destroy']) -> name('admin.subcategories.delete');
+        //change Status the sub category 
+        Route::get('changeStatus/{id}',[SubCategoriesController::class ,'changeStatus']) -> name('admin.subcategories.status');
 
     });
     ######################### End  Sub Categoris Routes  ########################

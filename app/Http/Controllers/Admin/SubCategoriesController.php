@@ -8,7 +8,7 @@ use App\Models\MainCategory;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\SubCategory;
-
+use Illuminate\Support\Str;
 class SubCategoriesController extends Controller
 {
 
@@ -126,74 +126,121 @@ class SubCategoriesController extends Controller
     }
 
 
-    // public function edit($id)
-    // {
+    public function edit($id)
+    {
+
+        //get specific categories and its translations
+        $sub_categories = SubCategory::Selection()->find($id);
+
+        if (!$sub_categories)
+            return redirect()->route('admin.subcategories')->with(['error' => 'هذا القسم غير موجود ']);
+
+        $default_lang = get_default_lang();
+        $main_categories = MainCategory::where('translation_lang', $default_lang)->active()->orderBy('id','DESC') -> get();
 
 
-    //     //get specific categories and its translations
-    //     $category = Category::orderBy('id', 'DESC')->find($id);
+        return view('admin.subcategories.edit', compact('main_categories','sub_categories'));
 
-    //     if (!$category)
-    //         return redirect()->route('admin.subcategories')->with(['error' => 'هذا القسم غير موجود ']);
-
-    //     $categories = Category::parent()->orderBy('id','DESC') -> get();
+    }
 
 
-    //     return view('dashboard.subcategories.edit', compact('category','categories'));
+    public function update($Sub_id, SubCategoryRequest $request)
+    {
+        try {
+            //validation => SubCategoryRequest
 
-    // }
+            //update DB ===>
 
+            //find sub_categories
+            $sub_categories = SubCategory::find($Sub_id);
 
-    // public function update($id, SubCategoryRequest $request)
-    // {
-    //     try {
-    //         //validation
-
-    //         //update DB
-
-
-    //         $category = Category::find($id);
-
-    //         if (!$category)
-    //             return redirect()->route('admin.subcategories')->with(['error' => 'هذا القسم غير موجود']);
-
-    //         if (!$request->has('is_active'))
-    //             $request->request->add(['is_active' => 0]);
-    //         else
-    //             $request->request->add(['is_active' => 1]);
-
-    //         $category->update($request->all());
-
-    //         //save translations
-    //         $category->name = $request->name;
-    //         $category->save();
-
-    //         return redirect()->route('admin.subcategories')->with(['success' => 'تم ألتحديث بنجاح']);
-    //     } catch (\Exception $ex) {
-
-    //         return redirect()->route('admin.subcategories')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-    //     }
-
-    // }
+            if (!$sub_categories)
+                return redirect()->route('admin.subcategories')->with(['error' => 'هذا القسم غير موجود']);
 
 
-    // public function destroy($id)
-    // {
+            // update date
 
-    //     try {
-    //         //get specific categories and its translations
-    //         $category = Category::orderBy('id', 'DESC')->find($id);
+            $category = array_values($request->category) [0];
 
-    //         if (!$category)
-    //             return redirect()->route('admin.subcategories')->with(['error' => 'هذا القسم غير موجود ']);
+            if (!$request->has('category.0.active'))
+                $request->request->add(['active' => 0]);
+            else
+                $request->request->add(['active' => 1]);
 
-    //         $category->delete();
+                SubCategory::where('id', $Sub_id)
+                ->update([
+                    'name' => $category['name'],
+                    'slug' => $category['slug'],
+                    'active' => $request->active,
+                ]);
 
-    //         return redirect()->route('admin.subcategories')->with(['success' => 'تم  الحذف بنجاح']);
+                // save image
+                if ($request->has('photo')) {
+                    $filePath = uploadImage('subcategories', $request->photo);
+                    SubCategory::where('id', $Sub_id)
+                        ->update([
+                            'photo' => $filePath,
+                        ]);
+                }
 
-    //     } catch (\Exception $ex) {
-    //         return redirect()->route('admin.subcategories')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
-    //     }
-    // }
+            return redirect()->route('admin.subcategories')->with(['success' => 'تم ألتحديث بنجاح']);
+        } catch (\Exception $ex) {
+
+            return redirect()->route('admin.subcategories')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
+
+    }
+
+
+    public function destroy($id)
+    {
+
+        try {
+            //get specific categories and its translations
+            $sub_categories = SubCategory::find($id);
+
+            if (!$sub_categories)
+                return redirect()->route('admin.subcategories')->with(['error' => 'هذا القسم غير موجود ']);
+
+            $sub_categories->delete();
+
+
+            ## Delet image
+            ##Srt is cutting helper method
+            $image = Str::after($sub_categories->photo, 'assets/');
+            $image = public_path('assets/' . $image);
+            unlink($image); //delete from folder
+
+            #Delet all translation of the categories
+            $sub_categories -> categories() -> delete();
+        
+            #delet section
+            $sub_categories->delete();
+
+            return redirect()->route('admin.subcategories')->with(['success' => 'تم  الحذف بنجاح']);
+
+        } catch (\Exception $ex) {
+            return redirect()->route('admin.subcategories')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
+    }
+
+    public function changeStatus($id)
+    {
+        try {
+            $sub_categories = SubCategory::find($id);
+            if (!$sub_categories)
+                return redirect()->route('admin.subcategories')->with(['error' => 'هذا القسم غير موجود ']);
+
+           $status =  $sub_categories -> active  == 0 ? 1 : 0;
+
+           $sub_categories -> update(['active' =>$status ]);
+
+            return redirect()->route('admin.subcategories')->with(['success' => ' تم تغيير الحالة بنجاح ']);
+
+        } catch (\Exception $ex) {
+            return redirect()->route('admin.subcategories')->with(['error' => 'حدث خطا ما برجاء المحاوله لاحقا']);
+        }
+    }
+
 
 }

@@ -63,7 +63,7 @@
                                                 @foreach($sub_categories as $sub_category)
                                                     <tr>
                                                         <td>{{$sub_category -> name}}</td>
-                                                        <td>{{$sub_category -> category_id}}</td>
+                                                        <td>{{$sub_category ->mainCategory-> name}}</td> <!--Relation betwen sub cayegory and Main Category -->
                                                         <td>{{$sub_category -> slug}}</td>
                                                         <td>{{get_default_lang()}}</td>
                                                         <td>
@@ -84,6 +84,14 @@
                                                                 <a href="{{route('admin.subcategories.delete',$sub_category -> id)}}"
                                                                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">Remove</a>
 
+                                                                   @if($sub_category -> active == 0)
+                                                                    <a href="{{route('admin.subcategories.status',$sub_category -> id)}}"
+                                                                   class="btn btn-outline-success btn-min-width box-shadow-3 mr-1 mb-1">active</a>
+                                                                        @else
+                                                                    <a href="{{route('admin.subcategories.status',$sub_category -> id)}}"
+                                                                   class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                   Deactivate</a>
+                                                                    @endif
 
 
                                                             </div>

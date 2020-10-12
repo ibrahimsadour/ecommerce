@@ -66,36 +66,49 @@
             </li>
 
 
-            <!-- <li class="nav-item"><a href=""><i class="la la-male"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">الطلاب  </span>
+            <li class="nav-item"><a href=""><i class="la la-male"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main">Brands  </span>
                     <span
-                        class="badge badge badge-warning  badge-pill float-right mr-2"></span>
+                        class="badge badge badge-warning  badge-pill float-right mr-2">400</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href=""
-                                          data-i18n="nav.dash.ecommerce"> عرض الكل </a>
+                    <li class=""><a class="menu-item" href=""
+                                          data-i18n="nav.dash.ecommerce"> Show all brands </a>
                     </li>
-                    <li><a class="menu-item" href="" data-i18n="nav.dash.crypto">أضافة
-                            طالب </a>
+                    <li><a class="menu-item" href="" data-i18n="nav.dash.crypto"> Add new brands</a>
                     </li>
                 </ul>
             </li>
 
-
-            <li class="nav-item">
-                <a href=""><i class="la la-male"></i>
-                    <span class="menu-title" data-i18n="nav.dash.main">تذاكر المراسلات   </span>
+            <li class="nav-item"><a href=""><i class="la la-male"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main">Tags  </span>
                     <span
-                        class="badge badge badge-danger  badge-pill float-right mr-2">0</span>
+                        class="badge badge badge-warning  badge-pill float-right mr-2">500</span>
                 </a>
                 <ul class="menu-content">
-                    <li class="active"><a class="menu-item" href=""
-                                          data-i18n="nav.dash.ecommerce"> تذاكر الطلاب </a>
+                    <li class=""><a class="menu-item" href=""
+                                          data-i18n="nav.dash.ecommerce"> Show all tags </a>
+                    </li>
+                    <li><a class="menu-item" href="" data-i18n="nav.dash.crypto"> Add new tags</a>
+                    </li>
+                </ul>
+            </li>
+    
+            <li class="nav-item"><a href=""><i class="la la-male"></i>
+                    <span class="menu-title" data-i18n="nav.dash.main">Products  </span>
+                    <span
+                        class="badge badge badge-warning  badge-pill float-right mr-2">500</span>
+                </a>
+                <ul class="menu-content">
+                    <li class=""><a class="menu-item" href=""
+                                          data-i18n="nav.dash.ecommerce"> Show all Products </a>
+                    </li>
+                    <li><a class="menu-item" href="" data-i18n="nav.dash.crypto"> Add new Products</a>
                     </li>
                 </ul>
             </li>
 
-
+<!-- 
             <li class=" nav-item"><a href="#"><i class="la la-television"></i><span class="menu-title"
                                                                                     data-i18n="nav.templates.main">Templates</span></a>
                 <ul class="menu-content">

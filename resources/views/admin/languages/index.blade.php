@@ -73,6 +73,14 @@
                                                                 <a href="{{route('admin.languages.delete',$language -> id)}}"
                                                                    class="btn btn-outline-danger btn-min-width box-shadow-3 mr-1 mb-1">Remove</a>
 
+                                                                @if($language -> active == 0)
+                                                                    <a href="{{route('admin.languages.status',$language -> id)}}"
+                                                                    class="btn btn-outline-success btn-min-width box-shadow-3 mr-1 mb-1">active</a>
+                                                                            @else
+                                                                    <a href="{{route('admin.languages.status',$language -> id)}}"
+                                                                    class="btn btn-outline-warning btn-min-width box-shadow-3 mr-1 mb-1">
+                                                                    Deactivate</a>
+                                                                @endif
 
                                                             </div>
                                                         </td>

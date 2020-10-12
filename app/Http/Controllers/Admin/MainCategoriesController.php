@@ -84,7 +84,7 @@ class MainCategoriesController extends Controller
                 'translation_lang' => $default_category['abbr'],
                 'translation_of' => 0,
                 'name' => $default_category['name'],
-                'slug' => $default_category['name'],
+                'slug' => $default_category['slug'],
                 'photo' => $filePath
             ]);
 
@@ -101,7 +101,7 @@ class MainCategoriesController extends Controller
                         'translation_lang' => $category['abbr'],
                         'translation_of' => $default_category_id,
                         'name' => $category['name'],
-                        'slug' => $category['name'],
+                        'slug' => $category['slug'],
                         'photo' => $filePath
                     ];
                 }
@@ -161,6 +161,7 @@ class MainCategoriesController extends Controller
             MainCategory::where('id', $mainCat_id)
                 ->update([
                     'name' => $category['name'],
+                    'slug' => $category['slug'],
                     'active' => $request->active,
                 ]);
 

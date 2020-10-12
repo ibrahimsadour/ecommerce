@@ -13,7 +13,7 @@
                                 </li>
                                 <li class="breadcrumb-item"><a href=""> الاقسام ألفرعية  </a>
                                 </li>
-                                <li class="breadcrumb-item active"> تعديل - {{$category -> name}}
+                                <li class="breadcrumb-item active"> تعديل - {{$sub_categories -> name}}
                                 </li>
                             </ol>
                         </div>
@@ -39,22 +39,22 @@
                                         </ul>
                                     </div>
                                 </div>
-                                @include('dashboard.includes.alerts.success')
-                                @include('dashboard.includes.alerts.errors')
+                                @include('admin.includes.alerts.success')
+                                @include('admin.includes.alerts.errors')
                                 <div class="card-content collapse show">
                                     <div class="card-body">
                                         <form class="form"
-                                              action="{{route('admin.subcategories.update',$category -> id)}}"
+                                              action="{{route('admin.subcategories.update',$sub_categories -> id)}}"
                                               method="POST"
                                               enctype="multipart/form-data">
                                             @csrf
 
-                                            <input name="id" value="{{$category -> id}}" type="hidden">
+                                            <input name="id" value="{{$sub_categories -> id}}" type="hidden">
 
                                             <div class="form-group">
                                                 <div class="text-center">
                                                     <img
-                                                        src=""
+                                                        src="{{$sub_categories -> photo}}"
                                                         class="rounded-circle  height-150" alt="صورة القسم  ">
                                                 </div>
                                             </div>
@@ -73,17 +73,18 @@
 
                                             <div class="form-body">
 
-                                                <h4 class="form-section"><i class="ft-home"></i> بيانات القسم </h4>
+                                                <h4 class="form-section"><i class="ft-home"></i> section data </h4>
+                                                <!-- Select Main Categories  -->
                                                 <div class="row">
                                                     <div class="col-md-12">
                                                         <div class="form-group">
-                                                            <label for="projectinput2"> أختر القسم </label>
-                                                            <select name="parent_id" class="select2 form-control">
-                                                                <optgroup label="من فضلك أختر القسم ">
-                                                                    @if($categories && $categories -> count() > 0)
-                                                                        @foreach($categories as $mainCategory)
+                                                            <label for="projectinput2"> Choose a section </label>
+                                                            <select name="category_id" class="select2 form-control">
+                                                                <optgroup label="Please select a section ">
+                                                                    @if($main_categories && $main_categories -> count() > 0)
+                                                                        @foreach($main_categories as $category)
                                                                             <option
-                                                                                value="{{$mainCategory -> id }}"   @if($mainCategory -> id == $category -> parent_id)  selected @endif >{{$mainCategory -> name}}</option>
+                                                                                value="{{$category -> id }}">{{$category -> name}}</option>
                                                                         @endforeach
                                                                     @endif
                                                                 </optgroup>
@@ -95,39 +96,50 @@
                                                     </div>
                                                 </div>
 
+                                               
                                                 <div class="row">
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> اسم القسم
-                                                                 </label>
-                                                            <input type="text" id="name"
-                                                                   class="form-control"
-                                                                   placeholder="  "
-                                                                   value="{{$category -> name}}"
-                                                                   name="name">
-                                                            @error("name")
-                                                            <span class="text-danger">{{$message}}</span>
+                                                            <label for="projectinput1"> section name - {{__('messages.'.$sub_categories -> translation_lang)}} </label>
+                                                            <input type="text" value="{{$sub_categories -> name}}" id="name"
+                                                                class="form-control"
+                                                                placeholder="  "
+                                                                name="category[0][name]">
+                                                            @error("category.0.name")
+                                                            <span class="text-danger"> هذا الحقل مطلوب</span>
                                                             @enderror
                                                         </div>
                                                     </div>
-
                                                     <div class="col-md-6">
                                                         <div class="form-group">
-                                                            <label for="projectinput1"> اسم بالرابط
+                                                            <label for="projectinput1"> Slug - {{__('messages.'.$sub_categories -> translation_lang)}}
                                                             </label>
                                                             <input type="text" id="name"
-                                                                   class="form-control"
-                                                                   placeholder="  "
-                                                                   value="{{$category -> slug}}"
-                                                                   name="slug">
-                                                            @error("slug")
-                                                            <span class="text-danger">{{$message}}</span>
+                                                                    class="form-control"
+                                                                    placeholder="  "
+                                                                    value="{{$sub_categories -> slug}}"
+                                                                    name="category[0][slug]">
+                                                            @error("category.0.name")
+                                                            <span class="text-danger"> هذا الحقل مطلوب</span>
                                                             @enderror
                                                         </div>
                                                     </div>
 
 
+                                                    <div class="col-md-6 hidden">
+                                                        <div class="form-group">
+                                                            <label for="projectinput1"> أختصار اللغة {{__('messages.'.$sub_categories -> translation_lang)}} </label>
+                                                            <input type="text" id="abbr"
+                                                                class="form-control"
+                                                                placeholder="  "
+                                                                value="{{$sub_categories -> translation_lang}}"
+                                                                name="category[0][abbr]">
 
+                                                            @error("category.0.abbr")
+                                                            <span class="text-danger"> هذا الحقل مطلوب</span>
+                                                            @enderror
+                                                        </div>
+                                                    </div>
 
 
                                                 </div>
@@ -135,18 +147,20 @@
                                                     <div class="col-md-6">
                                                         <div class="form-group mt-1">
                                                             <input type="checkbox" value="1"
-                                                                   name="is_active"
-                                                                   id="switcheryColor4"
-                                                                   class="switchery" data-color="success"
-                                                                   @if($category -> is_active == 1)checked @endif/>
+                                                                name="category[0][active]"
+                                                                id="switcheryColor4"
+                                                                class="switchery" data-color="success"
+                                                                checked/>
                                                             <label for="switcheryColor4"
-                                                                   class="card-title ml-1">الحالة  </label>
+                                                                class="card-title ml-1">ststus  {{__('messages.'.$sub_categories -> translation_lang)}} </label>
 
-                                                            @error("is_active")
-                                                            <span class="text-danger">{{$message }}</span>
+                                                            @error("category.0.active")
+                                                            <span class="text-danger"> </span>
                                                             @enderror
                                                         </div>
                                                     </div>
+                                                </div>
+
                                                 </div>
                                             </div>
 

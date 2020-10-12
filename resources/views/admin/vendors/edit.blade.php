@@ -425,6 +425,6 @@
         }
 
     </script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC94LAYxA42YI3fRHfxuuy2uA4MrkpCdCc_y0ejs&libraries=places&callback=initAutocomplete&language=nl&region=NL
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC94LAYxA42YI3fRHfxuuy2uA4MrkpCdCc&callback=initAutocomplete&language=en&region=nl
          async defer"></script>
 @stop
