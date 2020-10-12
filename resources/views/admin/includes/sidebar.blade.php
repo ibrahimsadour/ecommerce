@@ -40,7 +40,7 @@
             <li class="{{ Request::is('admin/sub_categories') ? 'nav-item active' : '' }}"><a href=""><i class="la la-group"></i>
                     <span class="menu-title" data-i18n="nav.dash.main">Sub Categories</span>
                     <span
-                        class="badge badge badge-danger badge-pill float-right mr-2">{{App\Models\SubCategory::count()}}</span>
+                        class="badge badge badge-danger badge-pill float-right mr-2">{{App\Models\SubCategory::defaultSubCategory() ->count()}}</span>
                 </a>
                 <ul class="menu-content">
                     <li  class="{{ Request::is('admin/sub_categories') ? 'active' : '' }}"><a class="menu-item" href="{{route('admin.subcategories')}}"
@@ -1542,7 +1542,7 @@
                                                                         data-placement="right"
                                                                         data-original-title="Support"></i>
             </li> -->
-            <li class=" nav-item"><a href="http://support.pixinvent.com/"><i class="la la-support"></i><span
+            <li class=" nav-item"><a href="/"><i class="la la-support"></i><span
                         class="menu-title" data-i18n="nav.support_raise_support.main">website url</span></a>
             </li>
             <!-- <li class=" nav-item">

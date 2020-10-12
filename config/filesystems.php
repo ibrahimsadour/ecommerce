@@ -61,10 +61,17 @@ return [
             'url' => env('APP_URL') . '/public',
             'visibility' => 'public',
         ],
-        // Hier bij wordt alle foto van de vendors (الاقسام) opgeslaagd
+        // Hier bij wordt alle foto van de vendors (التجار) opgeslaagd
         'vendors' => [
             'driver' => 'local',
             'root' => public_path() . '/assets/images/vendors/',
+            'url' => env('APP_URL') . '/public',
+            'visibility' => 'public',
+        ],
+        // Hier bij wordt alle foto van de sub categoru (الاقسام) opgeslaagd
+        'subcategories' => [
+            'driver' => 'local',
+            'root' => public_path() . '/assets/images/subcategories/',
             'url' => env('APP_URL') . '/public',
             'visibility' => 'public',
         ],

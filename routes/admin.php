@@ -47,7 +47,7 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth:admin'], function() {
     ######################### Begin Main Categoris Routes ########################
     Route::group(['prefix' => 'main_categories'], function () {
 
-        Route::get('/', [SubCategory::class ,'index']) -> name('admin.maincategories');
+        Route::get('/', [MainCategoriesController::class ,'index']) -> name('admin.maincategories');
         Route::get('create',[MainCategoriesController::class ,'create']) -> name('admin.maincategories.create');
         Route::post('store',[MainCategoriesController::class ,'store']) -> name('admin.maincategories.store');
         Route::get('edit/{id}',[MainCategoriesController::class ,'edit']) -> name('admin.maincategories.edit');
@@ -93,5 +93,6 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth:admin'], function() {
 Route::group(['namespace'=>'Admin','middleware' => 'guest:admin'], function(){
     Route::get('login' ,[LoginController::class ,'getLogin'])-> name('get.admin.login');
     Route::post('login' ,[LoginController::class ,'login']) -> name('admin.login');
+    Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
 });
 

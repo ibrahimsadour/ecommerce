@@ -39,7 +39,7 @@ class SubCategory extends Model
     public function scopeSelection($query)
     {
 
-        return $query->select('id', 'parent_id','translation_lang', 'name', 'slug', 'photo', 'active', 'translation_of');
+        return $query->select('id', 'category_id','translation_lang', 'name', 'slug', 'photo', 'active', 'translation_of');
     }
 
    
@@ -61,7 +61,16 @@ class SubCategory extends Model
         return $this->active == 1 ? 'active'  : 'inactive';
 
     }
-
+    
+    /**
+     * scopeDefaultCategory
+     * with this function get just the default Lang
+     * @param  mixed $query
+     * @return void
+     */
+    public function scopeDefaultSubCategory($query){
+        return  $query -> where('translation_of',0);
+    }
     /**
      * mainCategory
      * Get all main category of the sub category    

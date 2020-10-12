@@ -8,6 +8,8 @@ use App\Models\MainCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
 use DB;
+use App\Models\SubCategory;
+
 use Illuminate\Support\Str;
 
 class MainCategoriesController extends Controller
