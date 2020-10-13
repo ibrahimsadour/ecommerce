@@ -24,4 +24,18 @@ class Admin extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    
+    /**
+     * guarded
+     *
+     * @var array
+     */
+    protected $guarded=[];
+    
+    /**
+     * timestamps
+     *
+     * @var bool
+     */
+    public $timestamps = true;
 }

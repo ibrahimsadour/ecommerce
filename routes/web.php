@@ -21,6 +21,3 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/map', function () {
-    return view('index');
-});

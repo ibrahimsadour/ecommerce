@@ -229,7 +229,7 @@
                         <div class="dropdown-menu dropdown-menu-right"><a class="dropdown-item" href=""><i
                                     class="ft-user"></i> My profile </a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="{{url('admin/logout')}}"><i class="ft-power"></i>Log out </a>
+                            <a class="dropdown-item" href="{{route('admin.logout')}}"><i class="ft-power"></i>Log out </a>
                         </div>
                     </li>
 

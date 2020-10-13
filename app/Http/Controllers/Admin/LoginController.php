@@ -44,14 +44,16 @@ class LoginController extends Controller
         return redirect()->back()->with(['error' => 'هناك خطا بالبيانات']);
     }
 
-    protected function guard()
+    protected function getGaurd()
     {
         return Auth::guard('admin');
     }
 
     public function logout() {
-        Session::flush();
-        Auth::guard('admin')->logout();
-        return Redirect('/admin/login');
+
+        $gaurd = $this->getGaurd();
+        $gaurd->logout();
+
+        return redirect()->route('admin.login');
     }
 }

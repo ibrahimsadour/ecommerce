@@ -40,3 +40,4 @@ function uploadVideo($folder, $video)
 }
 
 
+define('PAGINATION_COUNT',10); // PAGINATION_COUNT : een vast variabel  om alleen 10 items te laat zien om de pagina

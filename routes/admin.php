@@ -7,8 +7,6 @@ use App\Http\Controllers\Admin\LanguagesController;
 use App\Http\Controllers\Admin\MainCategoriesController;
 use App\Http\Controllers\Admin\VendorsController;
 use App\Http\Controllers\Admin\SubCategoriesController;
-define('PAGINATION_COUNT',10); // PAGINATION_COUNT : een vast variabel  om alleen 10 items te laat zien om de pagina
-
 /*
 |--------------------------------------------------------------------------
 | Admin Routes
@@ -92,11 +90,15 @@ Route::group(['namespace'=>'Admin','middleware' => 'auth:admin'], function() {
     });
     ######################### End  vendors Routes  ################################
 
+    // this route is allowd just for logined user or admin
+    Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
+
+
 });
 
 Route::group(['namespace'=>'Admin','middleware' => 'guest:admin'], function(){
     Route::get('login' ,[LoginController::class ,'getLogin'])-> name('get.admin.login');
     Route::post('login' ,[LoginController::class ,'login']) -> name('admin.login');
-    Route::get('logout', [LoginController::class, 'logout'])->name('admin.logout');
 });
+
 
